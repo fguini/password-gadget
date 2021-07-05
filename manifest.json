@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "Password gadget",
+    "version": "0.0.1",
+    "description": "You know when you don't remember a password and your browser does. So, let's change that input type for all us to remember.",
+    "short_name": "Password gadget",
+    "permissions": [
+        "activeTab",
+        "declarativeContent",
+        "<all_urls>"
+    ],
+    "background": {
+        "service_workers": [
+            "worker.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [],
+            "js": [
+                "index.js"
+            ]
+        }
+    ],
+    "icons": {
+        "16": "icons/icon.png",
+        "32": "icons/icon.png",
+        "48": "icons/icon.png",
+        "128": "icons/icon.png"
+    }
+}

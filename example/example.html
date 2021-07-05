@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>This is an example</title>
+</head>
+
+<body>
+    <h1>This is an example</h1>
+    <h2>Let's try our Password Gadget</h2>
+
+    <form>
+        <label for="user">User</label>
+        <input type="text" value="AnAmaizingUser" id="user" name="user" />
+        <label for="password">Password</label>
+        <input
+            type="password"
+            value="AnAmaizingPassword"
+            id="password"
+            name="password"
+            onmouseenter="console.log('Current attr onMouseEnter!')"
+            onmouseleave="console.log('Current attr onMouseLeave!')"
+        />
+    </form>
+
+    <script>
+        var input = document.getElementById('password');
+        input.onmouseenter = function CurrentOnMouseEnter() {
+            //console.log('Current onMouseEnter!');
+        };
+        input.onmouseleave = function CurrentOnMouseLeave() {
+            //console.log('Current onMouseLeave!');
+        };
+    </script>
+</body>
+</html>
