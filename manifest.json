@@ -4,15 +4,21 @@
     "version": "0.0.1",
     "description": "You know when you don't remember a password and your browser does. So, let's change that input type for all us to remember.",
     "short_name": "Password gadget",
+    "host_permissions": [
+        "*://*/*"
+    ],
     "permissions": [
         "activeTab",
         "declarativeContent",
-        "<all_urls>"
+        "storage"
     ],
-    "background": {
-        "service_workers": [
-            "worker.js"
-        ]
+    "action": {
+        "default_title": "Password Gadget Options",
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon.png",
+            "32": "icons/icon.png"
+        }
     },
     "content_scripts": [
         {

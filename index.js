@@ -1,4 +1,4 @@
-(function passwordGadgetInit(options) {
+function passwordGadgetInit(options) {
     var ALWAYS = 'ALWAYS', HOVER = 'HOVER', BUTTON = 'BUTTON';
 
     options = options || {
@@ -46,10 +46,12 @@
     }
 
     function showBox(el) {
+        // TODO show button
         showPassword(el);
     }
 
     function hideBox(el) {
+        // TODO hide button
         hidePassword(el);
     }
 
@@ -60,4 +62,8 @@
     function hidePassword(el) {
         el.type = 'password';
     }
-})(); // TODO get options
+}
+
+chrome.storage.sync.get(['changeCursor', 'type'], function(result) {
+    passwordGadgetInit(result);
+});

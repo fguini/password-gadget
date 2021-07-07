@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Password Gadget Options</title>
+    <style>
+        div.options {
+            min-width: 200px;
+        }
+
+        div.options h4, 
+        div.options h5 {
+            margin: 0 0 0.3rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="options">
+        <h4>Password Gadget</h4>
+        <hr />
+
+        <h5>Type</h5>
+        <label>
+            <input type="radio" name="type-option" value="ALWAYS" />
+            Always
+        </label>
+        <br />
+        <label>
+            <input type="radio" name="type-option" value="HOVER" />
+            On hover
+        </label>
+        <br />
+        <label>
+            <input type="radio" name="type-option" value="BUTTON" checked />
+            On button click
+        </label>
+
+        <hr />
+        <label>
+            <input id="change-cursor-option" type="checkbox" checked />
+            Change cursor
+        </label>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
