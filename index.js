@@ -13,46 +13,63 @@ function passwordGadgetInit(options) {
             configureInput(inputs[i]);
 
     function configureInput(el) {
-        if(options.type === ALWAYS)
-            showPassword(el);
-        else {    
+        var action = showPassword;
+        if(options.type !== ALWAYS) {
             if(options.changeCursor)
                 el.style = 'cursor: pointer;';
-            
-            addEvents(el);
+
+            action = options.type === BUTTON
+                ? showBox
+                : addEvents;
         }
+
+        action(el);
     }
 
     function addEvents(el) {
         var currentMouseEnter = el.onmouseenter;
         el.onmouseenter = function onMouseEnter(e) {
-            var enterAction = options.type === HOVER
-                ? showPassword
-                : showBox;
-
-            enterAction(el);
+            showPassword(el);
             if(currentMouseEnter) currentMouseEnter(e);
         }
 
         var currentMouseLeave = el.onmouseleave;
         el.onmouseleave = function onMouseLeave(e) {
-            var leaveAction = options.type === HOVER
-                ? hidePassword
-                : hideBox;
-                
-            leaveAction(el);
+            hidePassword(el);
             if(currentMouseLeave) currentMouseLeave(e);
         }
     }
 
     function showBox(el) {
-        // TODO show button
-        showPassword(el);
-    }
+        var shownText = 'ab12',
+            hiddenText = '****';
 
-    function hideBox(el) {
-        // TODO hide button
-        hidePassword(el);
+        var div = document.createElement('div');
+        div.id = Math.random().toString(36).substr(2, 9);
+        div.style = 'position: absoulte;' +
+            'display: inline-block;' +
+            'margin-left: -36px;' +
+            'z-index: 9999;';
+        
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.innerText = el.dataset.show === 'true'
+            ? shownText
+            : hiddenText;
+        button.onclick = function boxClick(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var show = !(el.dataset.show === 'true');
+            el.dataset.show = show;
+            button.innerText = show ? shownText : hiddenText;
+            
+            var action = show ? showPassword : hidePassword;
+            action(el);
+        };
+
+        div.appendChild(button);
+        el.parentElement.appendChild(div);
+        el.dataset.showBoxId = div.id;
     }
 
     function showPassword(el) {
